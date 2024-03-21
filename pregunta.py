@@ -44,8 +44,10 @@ def ingest_data():
             claves.append(clave[0].replace('\n',' '))
         elif len(clave) > 0: 
            claves[-1] = re.sub(r'\s+', ' ', claves[-1] + clave[0].replace('\n',' ').replace('.',''))
-    
+        if i == lines[-1]:
+            claves[-1] = claves[-1][:-1]
     df = pd.DataFrame({indices[0]: cluster, indices[1]: cantidad, indices[2]: porcentaje, indices[3]: claves})
+
 
     return df
 
