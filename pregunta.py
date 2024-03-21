@@ -39,11 +39,14 @@ def ingest_data():
             cantidad.append(int(numero[1]))
             porcentaje.append(float(numero[2].replace(',', '.')))
             cluster.append(int(numero[0]))
-            claves.append(clave[0].replace('\n',''))
+            claves.append(clave[0].replace('\n',' '))
         elif len(clave) > 0:
-           claves[-1] = re.sub(r'\s+', ' ', claves[-1] + clave[0].replace('\n','').replace('.',''))
+           claves[-1] = re.sub(r'\s+', ' ', claves[-1] + clave[0].replace('\n',' ').replace('. ',''))
     
     df = pd.DataFrame({indices[0]: cluster, indices[1]: cantidad, indices[2]: porcentaje, indices[3]: claves})
-    df = df.set_index(indices[0])
+
+    #df[indices[3]] = df[indices[3]].apply(lambda x: x[:-1])
 
     return df
+print(ingest_data().principales_palabras_clave.to_list()[4]
+        == "electric vehicle, lithium-ion batteries, state of charge, state of health, hybrid-electric vehicle, energy management strategies, energy management system, remaining useful life, battery management system, transfer learning, hybrid energy storage")
