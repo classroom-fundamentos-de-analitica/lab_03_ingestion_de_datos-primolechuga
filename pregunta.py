@@ -48,5 +48,3 @@ def ingest_data():
     #df[indices[3]] = df[indices[3]].apply(lambda x: x[:-1])
 
     return df
-print(ingest_data().principales_palabras_clave.to_list()[4]
-        == "electric vehicle, lithium-ion batteries, state of charge, state of health, hybrid-electric vehicle, energy management strategies, energy management system, remaining useful life, battery management system, transfer learning, hybrid energy storage")
