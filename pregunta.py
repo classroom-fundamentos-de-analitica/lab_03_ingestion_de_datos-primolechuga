@@ -39,12 +39,13 @@ def ingest_data():
             cantidad.append(int(numero[1]))
             porcentaje.append(float(numero[2].replace(',', '.')))
             cluster.append(int(numero[0]))
+            if len(claves)and claves[-1][-1]==' ': 
+                claves[-1] = claves[-1][:-1]
             claves.append(clave[0].replace('\n',' '))
-        elif len(clave) > 0:
-           claves[-1] = re.sub(r'\s+', ' ', claves[-1] + clave[0].replace('\n',' ').replace('. ',''))
+        elif len(clave) > 0: 
+           claves[-1] = re.sub(r'\s+', ' ', claves[-1] + clave[0].replace('\n',' ').replace('.',''))
     
     df = pd.DataFrame({indices[0]: cluster, indices[1]: cantidad, indices[2]: porcentaje, indices[3]: claves})
 
-    #df[indices[3]] = df[indices[3]].apply(lambda x: x[:-1])
-
     return df
+
